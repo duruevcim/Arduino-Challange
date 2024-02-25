@@ -1,0 +1,72 @@
+// C++ code
+
+#define BUTTON_1_PIN 8
+#define BUTTON_2_PIN 9
+#define BUTTON_3_PIN 10
+#define BUTTON_4_PIN 11
+#define BUTTON_5_PIN 12
+#define BUTTON_6_PIN 13
+
+#define LED_1_PIN 2
+#define LED_2_PIN 3
+#define LED_3_PIN 4
+#define LED_4_PIN 5
+#define LED_5_PIN 6
+#define LED_6_PIN 7
+
+void setup() {
+  Serial.begin(9600);
+  
+  pinMode(LED_1_PIN, OUTPUT);
+  pinMode(LED_2_PIN, OUTPUT);
+  pinMode(LED_3_PIN, OUTPUT);
+  pinMode(LED_4_PIN, OUTPUT);
+  pinMode(LED_5_PIN, OUTPUT);
+  pinMode(LED_6_PIN, OUTPUT);
+  
+  pinMode(BUTTON_1_PIN, INPUT_PULLUP);
+  pinMode(BUTTON_2_PIN, INPUT_PULLUP);
+  pinMode(BUTTON_3_PIN, INPUT_PULLUP);
+  pinMode(BUTTON_4_PIN, INPUT_PULLUP);
+  pinMode(BUTTON_5_PIN, INPUT_PULLUP);
+  pinMode(BUTTON_6_PIN, INPUT_PULLUP);
+}
+
+void controlLight(int buttonNumber) {
+  for (int i = LED_1_PIN; i <= LED_6_PIN; i++) {
+    digitalWrite(i, LOW);
+  }
+
+  digitalWrite(LED_1_PIN + buttonNumber - 1, HIGH);
+}
+
+void loop() {
+  if (digitalRead(BUTTON_1_PIN) == HIGH) {
+    controlLight(1);
+  }
+  if (digitalRead(BUTTON_2_PIN) == HIGH) {
+    controlLight(2);
+  }
+  if (digitalRead(BUTTON_3_PIN) == HIGH) {
+    controlLight(3);
+  }
+  if (digitalRead(BUTTON_4_PIN) == HIGH) {
+    controlLight(4);
+  }
+  if (digitalRead(BUTTON_5_PIN) == HIGH) {
+    controlLight(5);
+  }
+  if (digitalRead(BUTTON_6_PIN) == HIGH) {
+    controlLight(6);
+  }
+}
+
+void GlowingLight(int newPosition, int currentPosition) {
+  for (int i = 0; i < 6; i++) {
+    digitalWrite(LED_1_PIN + i, HIGH);
+  }
+  
+  digitalWrite(LED_1_PIN + newPosition - 1, HIGH);
+}
+
+
